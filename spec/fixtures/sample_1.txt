@@ -5,3 +5,12 @@
 2018-06-19 09:41 C recommends D
 2018-06-23 09:41 B recommends D
 2018-06-25 09:41 D accepts
+
+skip
+        A
+           \
+             B.
+           /
+        C.
+          \
+            D.
