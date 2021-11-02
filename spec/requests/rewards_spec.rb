@@ -9,16 +9,25 @@ RSpec.describe 'rewards', type: :request do
       parameter name: 'file',
                 description: 'Rewards file',
                 in: :formData,
-                attributes: {
-                  schema: {
-                    type: :object,
-                    properties: {
-                      file: { type: :binary }
+                required: true,
+                type: :file,
+                schema: {
+                  type: :object,
+                  properties: {
+                    file: {
+                      type: :string,
+                      format: :binary
                     }
                   }
                 }
 
       response(200, 'successful', document: true) do
+        example.metadata[:response][:content] = {
+          'application/json' => {
+            example: {:A=>1.75, :B=>1.5, :C=>1}
+          }
+        }
+
         context 'with sample_1 file' do
           let(:file) { File.join('spec', 'fixtures', 'sample_1.txt') }
           let(:expected) do

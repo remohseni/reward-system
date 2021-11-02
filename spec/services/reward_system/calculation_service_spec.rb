@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe RewardSystem::CalculationService do
   describe '.call' do
-    subject(:calculation_result) { RewardSystem::CalculationService.call(data_file) }
+    subject(:calculation_result) { described_class.call(data_file) }
 
     context 'with sample_1 file' do
       let(:data_file) { 'spec/fixtures/sample_1.txt' }
