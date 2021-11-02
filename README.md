@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run the application:
 
-Things you may want to cover:
+```ruby
+bundle install
+rails server
+```
 
-* Ruby version
+After running application visit http://localhost:3000
 
-* System dependencies
+In the root page an example form is provided to send request to the api
 
-* Configuration
+## API Documentation ##
+After running the app you can see the documentation for the api under the link:
+http://localhost:3000/api-docs/index.html
 
-* Database creation
+## Running specs ##
+```ruby
+rspec spec/models
+rspec spec/requests
+rspec spec/services
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
