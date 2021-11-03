@@ -120,6 +120,70 @@ root.to_h
 }
 ```
 
+#### `#score_parents`
+This method will add score of (amount/2)^k to all parents. Default value for `amount` is 1. K is the distance of parent from the current node. Note that K starts from 0.
+First parent gets 1 point, grandparent gets 0.5 point and second grandparent '0.25' point and so on
+
+```ruby
+node = RewardSystem::Tree.new(name: 'node')
+root.score_parents(5)
+```
+
+#### `#export_scores
+This will calculate points of each node and result is a hash. Excludes node with zero point and also the root node
+```ruby
+root = RewardSystem::Tree.new(name: 'root')
+node_a = RewardSystem::Tree.new(name: 'A')
+node_b = RewardSystem::Tree.new(name: 'B')
+node_c = RewardSystem::Tree.new(name: 'C')
+node_d = RewardSystem::Tree.new(name: 'D')
+node_e = RewardSystem::Tree.new(name: 'E')
+
+root.add_child(node_a)
+root.add_child(node_b)
+node_a.add_child(node_c)
+node_a.add_child(node_d)
+node_d.add_child(node_e)
+
+node_e.score_parents
+node_d.score_parents(1)
+
+root.export_scores
+# returns { "A" => 1.5, "D" => 1 }
+```
+if we run to_h on root:
+```ruby
+{
+  :A => {
+    :score            => 1.5,
+    :invitation_state => "pending",
+    :children         => {
+      :C => {
+        :score            => 0,
+        :invitation_state => "pending",
+        :children         => nil
+      },
+      :D => {
+        :score            => 1,
+        :invitation_state => "pending",
+        :children         => {
+          :E => {
+            :score            => 0,
+            :invitation_state => "pending",
+            :children         => nil
+          }
+        }
+      }
+    }
+  },
+  :B => {
+    :score            => 0,
+    :invitation_state => "pending",
+    :children         => nil
+  }
+}
+```
+
 ## License
 This project is available under the [MIT](https://opensource.org/licenses/mit-license.php) license.
 
