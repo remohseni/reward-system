@@ -7,7 +7,7 @@ System for tracking and rewarding users who recommend the app to other users
 + [Install](#install)
 + [Tests](#test)
 + [API Documentation](#api-documentation)
-+ [Tree object](#tree-object)
++ [Tree class](#tree-class)
   + [#add_child](#add_child)
   + [#find_by_name](#find_by_name)
   + [#find_or_create_by_name](#find_or_create_by_name)
@@ -35,7 +35,7 @@ rspec spec/services
 ## API Documentation ##
 http://localhost:3000/api-docs/index.html
 
-## Tree object ##
+## Tree class ##
 A node is an instance of the Tree class. Each node is a tree because it can be the root of its own tree. A node can be added as a child to a node of another tree node.
 
 #### Create a node
