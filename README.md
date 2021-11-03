@@ -8,7 +8,12 @@ System for tracking and rewarding users who recommend the app to other users
 + [Tests](#test)
 + [API Documentation](#api-documentation)
 + [Tree object](#tree-object)
-  + [Methods](#tree-methods)
+  + [#add_child](#add_child)
+  + [#find_by_name](#find_by_name)
+  + [#find_or_create_by_name](#find_or_create_by_name)
+  + [#tree_traversal](#tree_traversal)
+  + [#score_parents](#score_parents)
+  + [#export_scores](#export_scores)
 + [License](#license)
 To run the application:
 
