@@ -39,7 +39,9 @@ Tree class can create a node of a tree. Each node is a tree and can be added to 
 node = RewardSystem::Tree.new(name: 'test node')
 ```
 
-#### Add a node as a child of another node
+### Methods
+#### `#add_child` 
+Add a node as a child of another node
 ```ruby
 parent_node = RewardSystem::Tree.new(name: 'parent node')
 child_node = RewardSystem::Tree.new(name: 'Child node')
@@ -48,7 +50,76 @@ parent_node.add_child(child_node)
 ```
 
 <img src="https://github.com/remohseni/reward-system/blob/main/docs/images/parent-child.png" />
- 
+
+#### `#find_by_name`
+Finds a node by name inside a parent node tree
+```ruby
+parent_node.find_by_name('Child node')
+# returns a node if a node with name 'Child node' exists
+# Otherwise returns nil
+```
+
+#### `#find_or_create_by_name`
+Similar to find_by_name method but if there is no any method with that name it will create a new node and attaches to the parent node as a direct child  
+```ruby
+parent_node.find_or_create_by_name('Child node')
+# finds or creates a node  with name `Child node`
+```
+
+#### `#tree_traversal`
+By using this method all nodes under the parent node are visited. tree_traversal accepts a block. If the block is given, the block will run on each node 
+```ruby
+parent_node.tree_traversal do |node|
+  puts node.name
+end
+# it will visit all nodes and prints names 
+```
+
+
+#### `#to_h`
+By using this method all nodes under the parent node are visited. tree_traversal accepts a block. If the block is given, the block will run on each node
+```ruby
+root = RewardSystem::Tree.new(name: 'root')
+node_a = RewardSystem::Tree.new(name: 'A')
+node_b = RewardSystem::Tree.new(name: 'B')
+node_c = RewardSystem::Tree.new(name: 'C')
+node_d = RewardSystem::Tree.new(name: 'D')
+
+root.add_child(node_a)
+root.add_child(node_b)
+node_a.add_child(node_c)
+node_a.add_child(node_d)
+root.to_h
+# it will display the tree in a nested Hash 
+```
+<img src="https://github.com/remohseni/reward-system/blob/main/docs/images/to_h_method.png" />
+
+```ruby
+{
+  :A => {
+    :score            => 0,
+    :invitation_state => "pending",
+    :children         => {
+      :C => {
+        :score            => 0,
+        :invitation_state => "pending",
+        :children         => nil
+      },
+      :D => {
+        :score            => 0,
+        :invitation_state => "pending",
+        :children         => nil
+      }
+    }
+  },
+  :B => {
+    :score            => 0,
+    :invitation_state => "pending",
+    :children         => nil
+  }
+}
+```
+
 ## License
 This project is available under the [MIT](https://opensource.org/licenses/mit-license.php) license.
 
