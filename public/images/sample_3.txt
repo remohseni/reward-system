@@ -1,0 +1,23 @@
+2018-06-12 09:41 A recommends B
+2018-06-12 09:42 A recommends E
+2018-06-12 09:43 B accepts
+2018-06-12 09:44 B recommends C
+2018-06-12 09:45 C accepts
+2018-06-12 09:46 C recommends E
+2018-06-12 09:47 E accepts
+2018-06-12 09:48 C recommends D
+2018-06-12 09:49 B recommends D
+2018-06-12 09:51 E recommends F
+2018-06-12 09:53 B recommends G
+2018-06-12 09:58 E accepts
+
+skip
+
+Date times are mixed
+        A
+     /     \
+   E.        B.
+  /        /   \
+F       C.      G
+          \
+            D
